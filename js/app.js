@@ -105,6 +105,12 @@ function setupNavigation() {
       loadGame('tebak-gambar');
     } else if (targetId === 'peta-section') {
       selectMapLocation(0);
+    } else if (targetId === 'kuis-section') {
+      if (typeof restartQuiz === 'function' && quizCurrentIndex >= QUIZ_QUESTIONS.length) {
+        restartQuiz();
+      } else if (typeof loadQuizQuestion === 'function') {
+        loadQuizQuestion();
+      }
     }
   }
 
@@ -1134,6 +1140,7 @@ const QUIZ_QUESTIONS = [
 let quizCurrentIndex = 0;
 let quizScore = 0;
 let quizSelectedOption = null;
+let quizState = 'answering'; // 'answering' | 'answered'
 
 function setupQuizEngine() {
   const answerBtn = document.getElementById('btn-submit-answer');
@@ -1141,18 +1148,32 @@ function setupQuizEngine() {
   const quizHomeBtn = document.getElementById('btn-quiz-back-home');
 
   if (answerBtn) {
-    answerBtn.addEventListener('click', handleQuizSubmit);
+    // Single permanent click handler driven by state
+    answerBtn.addEventListener('click', () => {
+      if (quizState === 'answering') {
+        if (quizSelectedOption === null) {
+          // If no option selected yet, highlight options gently
+          const opts = document.querySelectorAll('.quiz-option-btn');
+          opts.forEach(b => {
+            b.classList.add('ring-2', 'ring-rose-400');
+            setTimeout(() => b.classList.remove('ring-2', 'ring-rose-400'), 600);
+          });
+          return;
+        }
+        submitQuizAnswer();
+      } else if (quizState === 'answered') {
+        quizCurrentIndex++;
+        if (quizCurrentIndex < QUIZ_QUESTIONS.length) {
+          loadQuizQuestion();
+        } else {
+          showQuizResults();
+        }
+      }
+    });
   }
 
   if (restartBtn) {
-    restartBtn.addEventListener('click', () => {
-      quizCurrentIndex = 0;
-      quizScore = 0;
-      quizSelectedOption = null;
-      document.getElementById('quiz-result-view').classList.add('hidden');
-      document.getElementById('quiz-active-view').classList.remove('hidden');
-      loadQuizQuestion();
-    });
+    restartBtn.addEventListener('click', restartQuiz);
   }
 
   if (quizHomeBtn) {
@@ -1165,9 +1186,31 @@ function setupQuizEngine() {
   loadQuizQuestion();
 }
 
-function loadQuizQuestion() {
+function restartQuiz() {
+  quizCurrentIndex = 0;
+  quizScore = 0;
   quizSelectedOption = null;
+  quizState = 'answering';
+  
+  const activeView = document.getElementById('quiz-active-view');
+  const resultView = document.getElementById('quiz-result-view');
+  if (resultView) resultView.classList.add('hidden');
+  if (activeView) activeView.classList.remove('hidden');
+  
+  loadQuizQuestion();
+}
+
+function loadQuizQuestion() {
+  quizState = 'answering';
+  quizSelectedOption = null;
+
+  const activeView = document.getElementById('quiz-active-view');
+  const resultView = document.getElementById('quiz-result-view');
+  if (resultView) resultView.classList.add('hidden');
+  if (activeView) activeView.classList.remove('hidden');
+
   const qData = QUIZ_QUESTIONS[quizCurrentIndex];
+  if (!qData) return;
 
   // Progress Bar & Counter
   const progressPercent = Math.round(((quizCurrentIndex + 1) / QUIZ_QUESTIONS.length) * 100);
@@ -1181,11 +1224,11 @@ function loadQuizQuestion() {
   const questionTextEl = document.getElementById('quiz-question-text');
   if (questionTextEl) questionTextEl.textContent = qData.q;
 
-  // Options
+  // Render Options
   const optionsContainer = document.getElementById('quiz-options-container');
   if (optionsContainer) {
     optionsContainer.innerHTML = qData.options.map((opt, idx) => `
-      <button class="quiz-option-btn w-full p-3.5 sm:p-4 text-left rounded-xl border-2 border-amber-300 bg-white hover:bg-amber-50 font-bold text-stone-800 transition-all flex items-center shadow-sm cursor-pointer" data-idx="${idx}">
+      <button type="button" class="quiz-option-btn w-full p-3.5 sm:p-4 text-left rounded-xl border-2 border-amber-300 bg-white hover:bg-amber-50 font-bold text-stone-800 transition-all flex items-center shadow-sm cursor-pointer select-none active:scale-[0.99]" data-idx="${idx}">
         <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-amber-200 text-amber-950 font-extrabold mr-3 text-sm shrink-0">
           ${String.fromCharCode(65 + idx)}
         </span>
@@ -1193,14 +1236,26 @@ function loadQuizQuestion() {
       </button>
     `).join('');
 
+    // Attach click events on option buttons
     optionsContainer.querySelectorAll('.quiz-option-btn').forEach(btn => {
       btn.addEventListener('click', () => {
+        if (quizState !== 'answering') return;
+        
+        if (window.soundEngine) window.soundEngine.playClick();
+        
+        // Reset styles for all options
         optionsContainer.querySelectorAll('.quiz-option-btn').forEach(b => {
           b.classList.remove('border-amber-600', 'bg-amber-200', 'ring-2', 'ring-amber-500');
+          b.classList.add('border-amber-300', 'bg-white');
         });
+        
+        // Mark clicked option as selected
+        btn.classList.remove('border-amber-300', 'bg-white');
         btn.classList.add('border-amber-600', 'bg-amber-200', 'ring-2', 'ring-amber-500');
+        
         quizSelectedOption = parseInt(btn.dataset.idx);
 
+        // Enable Submit Button
         const submitBtn = document.getElementById('btn-submit-answer');
         if (submitBtn) {
           submitBtn.disabled = false;
@@ -1210,7 +1265,7 @@ function loadQuizQuestion() {
     });
   }
 
-  // Reset Submit Button & Explanation Box
+  // Reset Submit Button
   const submitBtn = document.getElementById('btn-submit-answer');
   if (submitBtn) {
     submitBtn.disabled = true;
@@ -1218,28 +1273,38 @@ function loadQuizQuestion() {
     submitBtn.textContent = 'Jawab Sekarang';
   }
 
+  // Hide Explanation Box
   const expBox = document.getElementById('quiz-explanation-box');
-  if (expBox) expBox.classList.add('hidden');
+  if (expBox) {
+    expBox.classList.add('hidden');
+    expBox.innerHTML = '';
+  }
 }
 
-function handleQuizSubmit() {
-  if (quizSelectedOption === null) return;
+function submitQuizAnswer() {
+  if (quizSelectedOption === null || quizState !== 'answering') return;
 
+  quizState = 'answered';
   const qData = QUIZ_QUESTIONS[quizCurrentIndex];
   const optionsButtons = document.querySelectorAll('.quiz-option-btn');
   const expBox = document.getElementById('quiz-explanation-box');
   const submitBtn = document.getElementById('btn-submit-answer');
 
-  // Disable option clicks
-  optionsButtons.forEach(b => b.disabled = true);
+  // Disable options so answer cannot be changed
+  optionsButtons.forEach(b => {
+    b.disabled = true;
+    b.classList.remove('cursor-pointer');
+  });
 
   const isCorrect = quizSelectedOption === qData.answer;
 
   if (isCorrect) {
     if (window.soundEngine) window.soundEngine.playCorrect();
     quizScore += 10;
-    optionsButtons[quizSelectedOption].classList.remove('bg-white', 'bg-amber-200');
-    optionsButtons[quizSelectedOption].classList.add('bg-emerald-500', 'text-white', 'border-emerald-600');
+    if (optionsButtons[quizSelectedOption]) {
+      optionsButtons[quizSelectedOption].classList.remove('bg-white', 'bg-amber-200', 'border-amber-300', 'border-amber-600');
+      optionsButtons[quizSelectedOption].classList.add('bg-emerald-500', 'text-white', 'border-emerald-600');
+    }
     
     if (expBox) {
       expBox.className = 'p-3.5 rounded-xl text-sm font-bold bg-emerald-100 text-emerald-950 border border-emerald-400 block mt-4';
@@ -1247,9 +1312,16 @@ function handleQuizSubmit() {
     }
   } else {
     if (window.soundEngine) window.soundEngine.playWrong();
-    optionsButtons[quizSelectedOption].classList.remove('bg-white', 'bg-amber-200');
-    optionsButtons[quizSelectedOption].classList.add('bg-rose-500', 'text-white', 'border-rose-600');
-    optionsButtons[qData.answer].classList.add('bg-emerald-500', 'text-white');
+    if (optionsButtons[quizSelectedOption]) {
+      optionsButtons[quizSelectedOption].classList.remove('bg-white', 'bg-amber-200', 'border-amber-300', 'border-amber-600');
+      optionsButtons[quizSelectedOption].classList.add('bg-rose-500', 'text-white', 'border-rose-600');
+    }
+    
+    // Highlight the correct answer
+    if (optionsButtons[qData.answer]) {
+      optionsButtons[qData.answer].classList.remove('bg-white', 'border-amber-300');
+      optionsButtons[qData.answer].classList.add('bg-emerald-500', 'text-white', 'border-emerald-600');
+    }
 
     if (expBox) {
       expBox.className = 'p-3.5 rounded-xl text-sm font-bold bg-rose-100 text-rose-950 border border-rose-400 block mt-4';
@@ -1257,48 +1329,55 @@ function handleQuizSubmit() {
     }
   }
 
+  // Set button text for next step
   if (submitBtn) {
     submitBtn.disabled = false;
-    submitBtn.textContent = (quizCurrentIndex + 1 < QUIZ_QUESTIONS.length) ? 'Soal Berikutnya ▶' : 'Lihat Hasil Belajar 🏆';
-    submitBtn.onclick = () => {
-      quizCurrentIndex++;
-      submitBtn.onclick = handleQuizSubmit;
-      if (quizCurrentIndex < QUIZ_QUESTIONS.length) {
-        loadQuizQuestion();
-      } else {
-        showQuizResults();
-      }
-    };
+    submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+    if (quizCurrentIndex + 1 < QUIZ_QUESTIONS.length) {
+      submitBtn.textContent = 'Soal Berikutnya ▶';
+    } else {
+      submitBtn.textContent = 'Lihat Hasil Belajar 🏆';
+    }
   }
 }
 
 function showQuizResults() {
-  document.getElementById('quiz-active-view').classList.add('hidden');
+  const activeView = document.getElementById('quiz-active-view');
   const resultView = document.getElementById('quiz-result-view');
-  resultView.classList.remove('hidden');
+  if (activeView) activeView.classList.add('hidden');
+  if (resultView) resultView.classList.remove('hidden');
 
   if (window.soundEngine) window.soundEngine.playVictory();
 
   // Populate Score
-  document.getElementById('result-score-number').textContent = quizScore;
-  document.getElementById('result-correct-count').textContent = `${Math.round(quizScore / 10)} / ${QUIZ_QUESTIONS.length}`;
+  const scoreEl = document.getElementById('result-score-number');
+  if (scoreEl) scoreEl.textContent = quizScore;
+  
+  const correctEl = document.getElementById('result-correct-count');
+  if (correctEl) correctEl.textContent = `${Math.round(quizScore / 10)} / ${QUIZ_QUESTIONS.length}`;
 
   // Star Rating
   const starsContainer = document.getElementById('result-stars-slot');
+  const titleEl = document.getElementById('result-banner-title');
   let starsHtml = '';
   if (quizScore >= 80) {
     starsHtml = '<span class="text-4xl text-amber-400 animate-bounce">⭐ ⭐ ⭐</span>';
-    document.getElementById('result-banner-title').textContent = 'Hebat! Luar Biasa!';
+    if (titleEl) titleEl.textContent = 'Hebat! Luar Biasa!';
   } else if (quizScore >= 50) {
     starsHtml = '<span class="text-4xl text-amber-400 animate-bounce">⭐ ⭐</span>';
-    document.getElementById('result-banner-title').textContent = 'Bagus Sekali!';
+    if (titleEl) titleEl.textContent = 'Bagus Sekali!';
   } else {
     starsHtml = '<span class="text-4xl text-amber-400">⭐</span>';
-    document.getElementById('result-banner-title').textContent = 'Tetap Semangat Belajar!';
+    if (titleEl) titleEl.textContent = 'Tetap Semangat Belajar!';
   }
   if (starsContainer) starsContainer.innerHTML = starsHtml;
 
-  // Launch simple celebratory confetti
+  const resultMascot = document.getElementById('result-mascot-slot');
+  if (resultMascot && window.CulturalAssets) {
+    resultMascot.innerHTML = window.CulturalAssets.getMascot('cheering', 'res_');
+  }
+
+  // Trigger celebration confetti
   triggerConfetti();
 }
 
