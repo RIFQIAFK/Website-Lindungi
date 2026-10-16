@@ -1,0 +1,314 @@
+/* LINDUNING WEB - Style & Custom Gaming Theme */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap');
+
+:root {
+  --sky-blue: #38BDF8;
+  --sky-blue-dark: #0284C7;
+  --gold: #FACC15;
+  --gold-dark: #CA8A04;
+  --leaf-green: #22C55E;
+  --leaf-green-dark: #15803D;
+  --wood-brown: #78350F;
+  --wood-dark: #451A03;
+  --wood-orange: #9A3412;
+  --parchment: #FEF3C7;
+  --parchment-light: #FFFBEB;
+  --parchment-border: #FDE68A;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: #E0F2FE;
+  background-image: 
+    radial-gradient(#38BDF8 1.5px, transparent 1.5px),
+    radial-gradient(#BAE6FD 1.5px, #E0F2FE 1.5px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+  color: #451A03;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, .font-title {
+  font-family: 'Fredoka', cursive, sans-serif;
+}
+
+/* Wood Board & Plaque Styles */
+.wood-board {
+  background: linear-gradient(180deg, #9A3412 0%, #78350F 50%, #451A03 100%);
+  border: 4px solid #FACC15;
+  box-shadow: 0 8px 0 #311102, 0 12px 20px rgba(0,0,0,0.3), inset 0 2px 4px rgba(254, 240, 138, 0.4);
+  border-radius: 1.25rem;
+  position: relative;
+}
+
+.wood-board::before {
+  content: '';
+  position: absolute;
+  top: 4px; left: 6px; right: 6px; height: 35%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 100%);
+  border-radius: 0.9rem 0.9rem 0 0;
+  pointer-events: none;
+}
+
+.wood-tag {
+  background: linear-gradient(180deg, #B45309 0%, #78350F 100%);
+  border: 3px solid #FDE047;
+  color: #FEF3C7;
+  text-shadow: 1px 2px 2px #451A03;
+  box-shadow: 0 4px 0 #451A03, inset 0 1px 2px rgba(255,255,255,0.3);
+}
+
+/* Parchment Box / Content Container */
+.parchment-card {
+  background: linear-gradient(180deg, #FFFBEB 0%, #FEF3C7 100%);
+  border: 3px solid #FCD34D;
+  box-shadow: 0 6px 0 #D97706, 0 10px 15px -3px rgba(0, 0, 0, 0.15), inset 0 0 15px rgba(217, 119, 6, 0.08);
+  border-radius: 1.25rem;
+}
+
+.parchment-inner {
+  background: #FFFDF5;
+  border: 2px dashed #FBBF24;
+  border-radius: 0.85rem;
+}
+
+/* Traditional Gold Ornaments Trim */
+.ornament-gold {
+  filter: drop-shadow(0 2px 3px rgba(120, 53, 15, 0.4));
+}
+
+/* 3D Gamified Buttons */
+.btn-game-gold {
+  background: linear-gradient(180deg, #FDE047 0%, #EAB308 50%, #CA8A04 100%);
+  color: #451A03;
+  border: 3px solid #FEF08A;
+  box-shadow: 0 6px 0 #854D0E, 0 10px 12px rgba(0,0,0,0.25);
+  font-family: 'Fredoka', cursive;
+  transition: all 0.15s ease-in-out;
+}
+.btn-game-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 0 #854D0E, 0 12px 16px rgba(0,0,0,0.3);
+  filter: brightness(1.05);
+}
+.btn-game-gold:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 #854D0E, 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.btn-game-green {
+  background: linear-gradient(180deg, #4ADE80 0%, #22C55E 50%, #16A34A 100%);
+  color: #FFFFFF;
+  text-shadow: 0 2px 2px #14532D;
+  border: 3px solid #BBF7D0;
+  box-shadow: 0 6px 0 #14532D, 0 10px 12px rgba(0,0,0,0.25);
+  font-family: 'Fredoka', cursive;
+  transition: all 0.15s ease-in-out;
+}
+.btn-game-green:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 0 #14532D, 0 12px 16px rgba(0,0,0,0.3);
+  filter: brightness(1.05);
+}
+.btn-game-green:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 #14532D, 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.btn-game-orange {
+  background: linear-gradient(180deg, #FB923C 0%, #F97316 50%, #EA580C 100%);
+  color: #FFFFFF;
+  text-shadow: 0 2px 2px #7C2D12;
+  border: 3px solid #FFEDD5;
+  box-shadow: 0 6px 0 #7C2D12, 0 10px 12px rgba(0,0,0,0.25);
+  font-family: 'Fredoka', cursive;
+  transition: all 0.15s ease-in-out;
+}
+.btn-game-orange:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 0 #7C2D12, 0 12px 16px rgba(0,0,0,0.3);
+}
+.btn-game-orange:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 #7C2D12, 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.btn-game-wood {
+  background: linear-gradient(180deg, #9A3412 0%, #78350F 100%);
+  color: #FEF3C7;
+  text-shadow: 0 2px 2px #311102;
+  border: 3px solid #FCD34D;
+  box-shadow: 0 5px 0 #311102, 0 8px 12px rgba(0,0,0,0.2);
+  font-family: 'Fredoka', cursive;
+  transition: all 0.15s ease-in-out;
+}
+.btn-game-wood:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 0 #311102;
+}
+.btn-game-wood:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 #311102;
+}
+
+/* Interactive Card Styles */
+.culture-card {
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+}
+.culture-card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* Mascot Animations */
+@keyframes floatGentle {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1.5deg); }
+}
+
+@keyframes waveHand {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-15deg); }
+  75% { transform: rotate(15deg); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.7); }
+  50% { box-shadow: 0 0 25px 8px rgba(250, 204, 21, 0.4); }
+}
+
+@keyframes confettiFall {
+  0% { transform: translateY(-100%) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(600px) rotate(720deg); opacity: 0; }
+}
+
+.animate-float {
+  animation: floatGentle 3.5s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2s infinite;
+}
+
+/* Custom Accordion */
+.accordion-header {
+  transition: background-color 0.2s ease;
+}
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0, 1, 0, 1);
+}
+.accordion-content.open {
+  max-height: 800px;
+  transition: max-height 0.4s ease-in-out;
+}
+
+/* Memory Match Game Card */
+.memory-card {
+  perspective: 1000px;
+  aspect-ratio: 1 / 1;
+}
+.memory-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+.memory-card.flipped .memory-card-inner {
+  transform: rotateY(180deg);
+}
+.memory-card-front, .memory-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.memory-card-front {
+  background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+  border: 4px solid #38BDF8;
+  box-shadow: 0 5px 0 #075985;
+}
+.memory-card-back {
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  border: 4px solid #F59E0B;
+  box-shadow: 0 5px 0 #B45309;
+  transform: rotateY(180deg);
+}
+
+/* 3x3 Sliding / Swap Puzzle Board */
+.puzzle-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  max-width: 360px;
+  margin: 0 auto;
+}
+.puzzle-tile {
+  aspect-ratio: 1 / 1;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: transform 0.15s ease, filter 0.15s ease;
+  position: relative;
+  overflow: hidden;
+  border: 3px solid #CA8A04;
+  box-shadow: 0 4px 0 #78350F;
+}
+.puzzle-tile:hover {
+  filter: brightness(1.1);
+  transform: scale(1.03);
+}
+.puzzle-tile.selected {
+  outline: 4px solid #22C55E;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.8);
+}
+
+/* Map SVG Styling */
+.map-pin {
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.map-pin:hover {
+  transform: scale(1.25) translateY(-5px);
+  filter: drop-shadow(0 6px 8px rgba(0,0,0,0.35));
+}
+.map-pin.active {
+  animation: bouncePin 1s infinite alternate;
+}
+@keyframes bouncePin {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-8px); }
+}
+
+/* Modal Styling */
+.modal-backdrop {
+  background-color: rgba(69, 26, 3, 0.75);
+  backdrop-filter: blur(4px);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #FEF3C7;
+  border-left: 2px solid #FDE68A;
+}
+::-webkit-scrollbar-thumb {
+  background: #B45309;
+  border-radius: 6px;
+  border: 2px solid #FEF3C7;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #78350F;
+}

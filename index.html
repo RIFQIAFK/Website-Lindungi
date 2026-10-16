@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LINDUNING WEB - Lestarikan Ningkuk, Jaga Identitas | Edukasi Budaya Komering</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'sky-bright': '#38BDF8',
+            'sky-deep': '#0284C7',
+            'gold-bright': '#FACC15',
+            'gold-dark': '#CA8A04',
+            'leaf-green': '#22C55E',
+            'wood-brown': '#78350F',
+            'wood-dark': '#451A03',
+            'wood-orange': '#9A3412',
+            'parchment': '#FEF3C7',
+            'parchment-light': '#FFFBEB'
+          },
+          fontFamily: {
+            title: ['Fredoka', 'sans-serif'],
+            body: ['Nunito', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Theme Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="min-h-screen flex flex-col font-body selection:bg-amber-300 selection:text-amber-950">
+
+  <!-- ========================================================
+       1. NAVBAR (Header Navigasi Tetap di Atas)
+       ======================================================== -->
+  <header class="sticky top-0 z-40 bg-gradient-to-b from-[#78350F] via-[#85390E] to-[#60290A] border-b-4 border-amber-400 shadow-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Logo & Slogan Kiri -->
+        <a href="#hero" data-target="hero-section" class="flex items-center space-x-3 group cursor-pointer">
+          <div class="relative w-12 h-12 flex-shrink-0" id="logo-crown-slot">
+            <!-- Crown Tanjak SVG will be injected here -->
+          </div>
+          <div>
+            <div class="flex items-center space-x-1.5">
+              <span class="font-title font-extrabold text-2xl sm:text-3xl tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-200 to-yellow-400 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
+                LINDUNING
+              </span>
+              <span class="bg-amber-400 text-amber-950 text-[10px] sm:text-xs font-black px-2 py-0.5 rounded-full uppercase tracking-wider shadow">
+                WEB
+              </span>
+            </div>
+            <p class="text-[11px] sm:text-xs text-amber-200/90 font-semibold tracking-wide hidden sm:block">
+              Lestarikan Ningkuk, Jaga Identitas
+            </p>
+          </div>
+        </a>
+
+        <!-- Menu Navigasi Desktop Cepat -->
+        <nav class="hidden md:flex items-center space-x-1.5 bg-[#451A03]/60 p-1.5 rounded-2xl border-2 border-amber-500/40 shadow-inner">
+          <button data-target="dashboard-section" class="nav-btn px-3.5 py-1.5 rounded-xl font-title font-bold text-sm text-amber-100 hover:bg-amber-500/20 hover:text-amber-300 transition-all cursor-pointer">
+            Beranda
+          </button>
+          <button data-target="ningkuk-section" class="nav-btn px-3.5 py-1.5 rounded-xl font-title font-bold text-sm text-amber-100 hover:bg-amber-500/20 hover:text-amber-300 transition-all cursor-pointer">
+            Mengenal Ningkuk
+          </button>
+          <button data-target="materi-section" class="nav-btn px-3.5 py-1.5 rounded-xl font-title font-bold text-sm text-amber-100 hover:bg-amber-500/20 hover:text-amber-300 transition-all cursor-pointer">
+            Materi Budaya
+          </button>
+          <button data-target="games-section" class="nav-btn px-3.5 py-1.5 rounded-xl font-title font-bold text-sm text-amber-100 hover:bg-amber-500/20 hover:text-amber-300 transition-all cursor-pointer">
+            Game Edukasi
+          </button>
+          <button data-target="peta-section" class="nav-btn px-3.5 py-1.5 rounded-xl font-title font-bold text-sm text-amber-100 hover:bg-amber-500/20 hover:text-amber-300 transition-all cursor-pointer">
+            Peta Budaya
+          </button>
+          <button data-target="kuis-section" class="nav-btn px-3.5 py-1.5 rounded-xl font-title font-bold text-sm text-amber-100 hover:bg-amber-500/20 hover:text-amber-300 transition-all cursor-pointer">
+            Kuis
+          </button>
+        </nav>
+
+        <!-- Action Buttons di Kanan: Suara & Pengaturan -->
+        <div class="flex items-center space-x-2.5">
+          <!-- Toggle Suara Musik (On/Off) -->
+          <button id="btn-sound-toggle" title="Nyalakan/Matikan Suara" class="w-11 h-11 bg-gradient-to-b from-amber-300 to-amber-500 hover:from-amber-200 hover:to-amber-400 border-2 border-amber-200 rounded-xl flex items-center justify-center shadow-[0_4px_0_#78350F] active:translate-y-1 transition-all cursor-pointer">
+            <span id="sound-icon">
+              <!-- Default Speaker Icon -->
+              <svg class="w-6 h-6 text-amber-950" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z"/>
+              </svg>
+            </span>
+          </button>
+
+          <!-- Tombol Pengaturan (Membuka Modal) -->
+          <button id="btn-open-settings" title="Pengaturan Aplikasi" class="w-11 h-11 bg-gradient-to-b from-amber-300 to-amber-500 hover:from-amber-200 hover:to-amber-400 border-2 border-amber-200 rounded-xl flex items-center justify-center shadow-[0_4px_0_#78350F] active:translate-y-1 transition-all cursor-pointer">
+            <svg class="w-6 h-6 text-amber-950" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </button>
+
+          <!-- Mobile Menu Hamburger Button -->
+          <button id="mobile-menu-toggle" class="md:hidden w-11 h-11 bg-amber-700 hover:bg-amber-800 text-amber-200 border-2 border-amber-500 rounded-xl flex items-center justify-center cursor-pointer">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Nav Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-[#502207] border-t-2 border-amber-600 px-4 py-3 space-y-2">
+      <button data-target="dashboard-section" class="w-full text-left font-title font-bold text-amber-100 hover:bg-amber-600/30 p-2 rounded-lg">Beranda</button>
+      <button data-target="ningkuk-section" class="w-full text-left font-title font-bold text-amber-100 hover:bg-amber-600/30 p-2 rounded-lg">Mengenal Ningkuk</button>
+      <button data-target="materi-section" class="w-full text-left font-title font-bold text-amber-100 hover:bg-amber-600/30 p-2 rounded-lg">Materi Budaya</button>
+      <button data-target="games-section" class="w-full text-left font-title font-bold text-amber-100 hover:bg-amber-600/30 p-2 rounded-lg">Game Edukasi</button>
+      <button data-target="peta-section" class="w-full text-left font-title font-bold text-amber-100 hover:bg-amber-600/30 p-2 rounded-lg">Peta Budaya</button>
+      <button data-target="kuis-section" class="w-full text-left font-title font-bold text-amber-100 hover:bg-amber-600/30 p-2 rounded-lg">Kuis Evaluasi</button>
+    </div>
+  </header>
+
+  <!-- ========================================================
+       MAIN CONTENT CONTAINER (SPA Multi-Sections)
+       ======================================================== -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+    <!-- ======================================================
+         2. HERO SECTION / LANDING PAGE
+         ====================================================== -->
+    <section id="hero-section" class="block animate-fadeIn">
+      <!-- Main Hero Banner Card -->
+      <div class="wood-board p-5 sm:p-8 md:p-10 mb-8 overflow-hidden">
+        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <!-- Teks & Sambutan Kiri -->
+          <div class="lg:col-span-7 text-center lg:text-left">
+            <!-- Badge Sambutan -->
+            <div class="inline-flex items-center space-x-2 bg-amber-400 text-amber-950 font-title font-black px-4 py-1.5 rounded-full text-xs sm:text-sm uppercase tracking-wider mb-4 shadow-md border-2 border-amber-200">
+              <span>🌟 Media Edukasi Interaktif Suku Komering</span>
+            </div>
+
+            <h1 class="font-title font-extrabold text-3xl sm:text-5xl lg:text-6xl text-amber-300 drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] leading-tight mb-3">
+              LINDUNING WEB
+            </h1>
+
+            <p class="font-title text-xl sm:text-2xl text-amber-100 font-bold mb-4 drop-shadow">
+              "Lestarikan Ningkuk, Jaga Identitas"
+            </p>
+
+            <p class="text-amber-100/90 text-sm sm:text-base leading-relaxed mb-6 max-w-2xl mx-auto lg:mx-0">
+              Selamat datang di portal petualangan edukatif untuk mengenal keagungan tradisi <strong>Ningkuk</strong> serta warisan budaya leluhur <strong>Suku Komering</strong> di Sumatera Selatan. Belajar jadi asyik melalui dongeng interaktif, peta budaya, dan aneka mini-game seru!
+            </p>
+
+            <!-- Sapaan Interaktif Maskot Bubble -->
+            <div class="bg-[#FFFDF5] border-3 border-amber-400 p-4 rounded-2xl shadow-lg mb-6 relative text-amber-950 inline-block text-left max-w-lg">
+              <div class="flex items-start space-x-3">
+                <span class="text-2xl">👋</span>
+                <div>
+                  <span class="font-bold text-amber-900 block text-sm">Pemandu Sahabat Budaya:</span>
+                  <p class="text-sm font-semibold text-stone-800">
+                    "Halo, Teman! Yuk, jelajahi budaya Ningkuk bersama aku!"
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tombol CTA Besar Emas -->
+            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+              <button id="btn-hero-mulai" class="btn-game-gold text-lg sm:text-xl font-black px-8 py-4 rounded-2xl flex items-center space-x-3 animate-pulse-glow cursor-pointer w-full sm:w-auto justify-center">
+                <span>MULAI JELAJAH</span>
+                <span class="text-2xl">▶</span>
+              </button>
+              
+              <button data-target="ningkuk-section" class="btn-game-wood text-base font-bold px-6 py-3.5 rounded-2xl cursor-pointer w-full sm:w-auto justify-center">
+                Apa itu Ningkuk? 📖
+              </button>
+            </div>
+          </div>
+
+          <!-- Ilustrasi Pemandangan Sungai & Rumah Adat & Karakter Kanan -->
+          <div class="lg:col-span-5 flex flex-col items-center justify-center relative">
+            <div class="w-full max-w-md relative bg-gradient-to-b from-sky-300 via-sky-200 to-amber-100 rounded-3xl p-4 border-4 border-amber-300 shadow-2xl overflow-hidden">
+              <!-- Scenery: River & Rumah Adat -->
+              <div class="h-48 sm:h-56 w-full" id="hero-house-slot">
+                <!-- SVG Rumah Adat Komering -->
+              </div>
+
+              <!-- Animated Floating Mascot Boy in front -->
+              <div class="w-40 sm:w-48 h-52 sm:h-60 mx-auto -mt-20 relative z-10 animate-float" id="hero-mascot-slot">
+                <!-- SVG Mascot Komering -->
+              </div>
+              
+              <div class="text-center mt-1 bg-amber-900/80 text-amber-200 font-bold text-xs py-1.5 px-3 rounded-full border border-amber-400">
+                Pemandu Cilik Suku Komering
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Quick Feature Showcase Cards -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <div class="parchment-card p-4 text-center cursor-pointer hover:scale-105 transition-all" data-target="ningkuk-section">
+          <div class="text-3xl mb-1">📖</div>
+          <h4 class="font-title font-bold text-amber-950 text-sm sm:text-base">Tradisi Ningkuk</h4>
+          <p class="text-[11px] text-stone-600 mt-1">Kenali sejarah, nilai luhur, dan makna adat</p>
+        </div>
+        <div class="parchment-card p-4 text-center cursor-pointer hover:scale-105 transition-all" data-target="materi-section">
+          <div class="text-3xl mb-1">🏛️</div>
+          <h4 class="font-title font-bold text-amber-950 text-sm sm:text-base">Materi Budaya</h4>
+          <p class="text-[11px] text-stone-600 mt-1">Pakaian adat, rumah ulu, motif kain & musik</p>
+        </div>
+        <div class="parchment-card p-4 text-center cursor-pointer hover:scale-105 transition-all" data-target="games-section">
+          <div class="text-3xl mb-1">🎮</div>
+          <h4 class="font-title font-bold text-amber-950 text-sm sm:text-base">4 Mini Game</h4>
+          <p class="text-[11px] text-stone-600 mt-1">Tebak gambar, memori, puzzle rumah adat</p>
+        </div>
+        <div class="parchment-card p-4 text-center cursor-pointer hover:scale-105 transition-all" data-target="peta-section">
+          <div class="text-3xl mb-1">🗺️</div>
+          <h4 class="font-title font-bold text-amber-950 text-sm sm:text-base">Peta Komering</h4>
+          <p class="text-[11px] text-stone-600 mt-1">Jelajahi titik budaya di bantaran sungai</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         3. DASHBOARD MENU UTAMA (Beranda Web)
+         ====================================================== -->
+    <section id="dashboard-section" class="hidden animate-fadeIn">
+      <!-- Title Plaque -->
+      <div class="text-center mb-8">
+        <div class="inline-block wood-tag px-6 py-2 rounded-2xl mb-2">
+          <h2 class="font-title font-extrabold text-2xl sm:text-3xl text-amber-200">
+            DASHBOARD MENU UTAMA
+          </h2>
+        </div>
+        <p class="text-amber-900 font-bold text-sm sm:text-base">
+          Pilih aktivitas budaya yang ingin kamu pelajari hari ini!
+        </p>
+      </div>
+
+      <!-- Welcome Banner with Mascot -->
+      <div class="bg-gradient-to-r from-amber-200 via-amber-100 to-amber-200 border-4 border-amber-500 rounded-3xl p-6 mb-8 shadow-md flex flex-col md:flex-row items-center gap-6">
+        <div class="w-24 h-24 sm:w-28 sm:h-28 flex-shrink-0 bg-white rounded-2xl border-2 border-amber-400 p-2 shadow-inner">
+          <div class="w-full h-full" id="dash-mascot-icon">
+            <span class="text-5xl flex items-center justify-center h-full">👦</span>
+          </div>
+        </div>
+        <div class="text-center md:text-left flex-grow">
+          <div class="bg-white/80 inline-block px-3 py-1 rounded-full text-xs font-black text-amber-900 border border-amber-300 mb-1">
+            Halo Sobat Edukasi! 👋
+          </div>
+          <h3 class="text-xl sm:text-2xl font-bold font-title text-amber-950">
+            "Yuk, jelajahi budaya Ningkuk bersama aku!"
+          </h3>
+          <p class="text-sm text-stone-700 mt-1">
+            Klik salah satu kartu di bawah ini untuk membuka lembaran wawasan adat Komering atau bermain games edukatif.
+          </p>
+        </div>
+      </div>
+
+      <!-- 5 Grid Kartu Interaktif Berukuran Besar & Penuh Warna -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        
+        <!-- Card 1: Mengenal Ningkuk (Warna Oranye - Ikon Buku Terbuka) -->
+        <div data-target="ningkuk-section" class="culture-card bg-gradient-to-b from-orange-400 to-orange-500 rounded-3xl p-6 text-white border-4 border-orange-200 shadow-[0_8px_0_#9A3412] flex flex-col justify-between h-64">
+          <div class="flex justify-between items-start">
+            <div class="w-14 h-14 bg-white/20 backdrop-blur rounded-2xl flex items-center justify-center text-3xl border border-white/40 shadow-inner">
+              📖
+            </div>
+            <span class="bg-orange-700/80 text-orange-100 text-xs font-bold px-3 py-1 rounded-full uppercase">
+              Tradisi Adat
+            </span>
+          </div>
+          <div>
+            <h3 class="font-title font-extrabold text-2xl mb-1 text-white drop-shadow">
+              Mengenal Ningkuk
+            </h3>
+            <p class="text-orange-100 text-xs sm:text-sm line-clamp-2">
+              Kisah tradisi perkenalan muda-mudi suku Komering, sejarah, dan nilai kesantunan.
+            </p>
+          </div>
+          <div class="pt-2 flex items-center justify-between border-t border-orange-300/40">
+            <span class="text-xs font-bold text-orange-100">Buka Materi</span>
+            <span class="w-8 h-8 rounded-full bg-white text-orange-600 flex items-center justify-center font-bold text-sm shadow">➔</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Materi Budaya (Warna Hijau - Ikon Rumah Adat/Buku) -->
+        <div data-target="materi-section" class="culture-card bg-gradient-to-b from-emerald-500 to-emerald-600 rounded-3xl p-6 text-white border-4 border-emerald-200 shadow-[0_8px_0_#14532D] flex flex-col justify-between h-64">
+          <div class="flex justify-between items-start">
+            <div class="w-14 h-14 bg-white/20 backdrop-blur rounded-2xl flex items-center justify-center text-3xl border border-white/40 shadow-inner">
+              🏛️
+            </div>
+            <span class="bg-emerald-800/80 text-emerald-100 text-xs font-bold px-3 py-1 rounded-full uppercase">
+              Warisan Budaya
+            </span>
+          </div>
+          <div>
+            <h3 class="font-title font-extrabold text-2xl mb-1 text-white drop-shadow">
+              Materi Budaya
+            </h3>
+            <p class="text-emerald-100 text-xs sm:text-sm line-clamp-2">
+              Pakaian adat Lambis, Rumah Panggung Ulu, motif ukiran, dan alat musik Kulintang.
+            </p>
+          </div>
+          <div class="pt-2 flex items-center justify-between border-t border-emerald-300/40">
+            <span class="text-xs font-bold text-emerald-100">Eksplorasi Detail</span>
+            <span class="w-8 h-8 rounded-full bg-white text-emerald-600 flex items-center justify-center font-bold text-sm shadow">➔</span>
+          </div>
+        </div>
+
+        <!-- Card 3: Game Edukasi (Warna Biru - Ikon Stik Game) -->
+        <div data-target="games-section" class="culture-card bg-gradient-to-b from-sky-500 to-sky-600 rounded-3xl p-6 text-white border-4 border-sky-200 shadow-[0_8px_0_#075985] flex flex-col justify-between h-64">
+          <div class="flex justify-between items-start">
+            <div class="w-14 h-14 bg-white/20 backdrop-blur rounded-2xl flex items-center justify-center text-3xl border border-white/40 shadow-inner">
+              🎮
+            </div>
+            <span class="bg-sky-800/80 text-sky-100 text-xs font-bold px-3 py-1 rounded-full uppercase">
+              Permainan Seru
+            </span>
+          </div>
+          <div>
+            <h3 class="font-title font-extrabold text-2xl mb-1 text-white drop-shadow">
+              Game Edukasi
+            </h3>
+            <p class="text-sky-100 text-xs sm:text-sm line-clamp-2">
+              Tebak gambar budaya, memory card match, susun puzzle rumah adat, dan tebak motif!
+            </p>
+          </div>
+          <div class="pt-2 flex items-center justify-between border-t border-sky-300/40">
+            <span class="text-xs font-bold text-sky-100">Mulai Bermain</span>
+            <span class="w-8 h-8 rounded-full bg-white text-sky-600 flex items-center justify-center font-bold text-sm shadow">➔</span>
+          </div>
+        </div>
+
+        <!-- Card 4: Peta Budaya (Warna Ungu - Ikon Pin Lokasi) -->
+        <div data-target="peta-section" class="culture-card bg-gradient-to-b from-purple-500 to-purple-600 rounded-3xl p-6 text-white border-4 border-purple-200 shadow-[0_8px_0_#581C87] flex flex-col justify-between h-64">
+          <div class="flex justify-between items-start">
+            <div class="w-14 h-14 bg-white/20 backdrop-blur rounded-2xl flex items-center justify-center text-3xl border border-white/40 shadow-inner">
+              🗺️
+            </div>
+            <span class="bg-purple-800/80 text-purple-100 text-xs font-bold px-3 py-1 rounded-full uppercase">
+              Geografis
+            </span>
+          </div>
+          <div>
+            <h3 class="font-title font-extrabold text-2xl mb-1 text-white drop-shadow">
+              Peta Budaya
+            </h3>
+            <p class="text-purple-100 text-xs sm:text-sm line-clamp-2">
+              Peta interaktif aliran Sungai Komering, sentra kerajinan, dan lokasi rumah adat kuno.
+            </p>
+          </div>
+          <div class="pt-2 flex items-center justify-between border-t border-purple-300/40">
+            <span class="text-xs font-bold text-purple-100">Buka Peta</span>
+            <span class="w-8 h-8 rounded-full bg-white text-purple-600 flex items-center justify-center font-bold text-sm shadow">➔</span>
+          </div>
+        </div>
+
+        <!-- Card 5: Kuis Evaluasi (Warna Pink/Magenta - Ikon Papan Ujian) -->
+        <div data-target="kuis-section" class="culture-card bg-gradient-to-b from-pink-500 to-rose-600 rounded-3xl p-6 text-white border-4 border-pink-200 shadow-[0_8px_0_#881337] flex flex-col justify-between h-64 sm:col-span-2 lg:col-span-2">
+          <div class="flex justify-between items-start">
+            <div class="w-14 h-14 bg-white/20 backdrop-blur rounded-2xl flex items-center justify-center text-3xl border border-white/40 shadow-inner">
+              📝
+            </div>
+            <span class="bg-rose-800/80 text-rose-100 text-xs font-bold px-3 py-1 rounded-full uppercase">
+              Evaluasi & Skor
+            </span>
+          </div>
+          <div>
+            <h3 class="font-title font-extrabold text-2xl sm:text-3xl mb-1 text-white drop-shadow">
+              Kuis Evaluasi Budaya
+            </h3>
+            <p class="text-pink-100 text-sm max-w-xl">
+              Uji pemahamanmu seputar Ningkuk dan Suku Komering dengan 10 soal interaktif berhadiah bintang & sertifikat skor!
+            </p>
+          </div>
+          <div class="pt-2 flex items-center justify-between border-t border-pink-300/40">
+            <span class="text-xs font-bold text-pink-100">Mulai Kuis 10 Soal</span>
+            <span class="w-8 h-8 rounded-full bg-white text-pink-600 flex items-center justify-center font-bold text-sm shadow">➔</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================
+         4. SECTION: PENGENALAN NINGKUK
+         ====================================================== -->
+    <section id="ningkuk-section" class="hidden animate-fadeIn">
+      <!-- Title Plaque -->
+      <div class="text-center mb-6">
+        <div class="inline-block wood-board px-8 py-3 rounded-2xl mb-2">
+          <h2 class="font-title font-extrabold text-2xl sm:text-4xl text-amber-300 drop-shadow">
+            Apa itu Ningkuk?
+          </h2>
+        </div>
+        <p class="text-stone-700 font-semibold text-sm sm:text-base max-w-2xl mx-auto">
+          "Ningkuk adalah tradisi turun-temurun masyarakat Suku Komering yang menjadi simbol kebersamaan, kesakralan, dan identitas budaya."
+        </p>
+      </div>
+
+      <!-- Main Parchment Content Box -->
+      <div class="parchment-card p-5 sm:p-8 mb-8">
+        
+        <!-- Ningkuk Scene Illustration Container -->
+        <div class="mb-6 rounded-2xl overflow-hidden border-3 border-amber-300 shadow-md h-64 sm:h-80 w-full" id="ningkuk-scene-slot">
+          <!-- Ningkuk Ceremony SVG scene -->
+        </div>
+
+        <!-- Ringkasan Inti Narasi -->
+        <div class="bg-amber-100/60 p-4 rounded-2xl border-2 border-amber-300/60 mb-6 text-stone-800 text-sm sm:text-base leading-relaxed">
+          <p class="mb-2">
+            Di masa lalu hingga kini, tradisi <strong>Ningkuk</strong> diselenggarakan pada malam hari menjelang pesta perkawinan atau upacara adat besar di balai rumah panggung Komering. Para bujang (pemuda) dan gadis (pemudi) berkumpul didampingi para tetua adat.
+          </p>
+          <p>
+            Mereka saling bertukar selendang adat, menyanyikan bait-bait pantun sindiran halus penuh kelakar sopan, serta saling menjalin silaturahmi yang sarat etika budi pekerti luhur.
+          </p>
+        </div>
+
+        <!-- Interactive Accordion Tabs -->
+        <div class="space-y-4 mb-8">
+          
+          <!-- Accordion Item 1: Sejarah dan Asal-usul -->
+          <div class="border-2 border-amber-300 rounded-2xl overflow-hidden bg-white shadow-sm">
+            <button class="accordion-btn w-full px-5 py-4 text-left flex justify-between items-center bg-gradient-to-r from-amber-100 to-amber-50 hover:bg-amber-200 transition-colors font-title font-bold text-amber-950 text-base sm:text-lg cursor-pointer" data-accordion-target="acc-sejarah">
+              <span class="flex items-center space-x-2">
+                <span class="text-xl">📜</span>
+                <span>Sejarah dan Asal-usul Ningkuk</span>
+              </span>
+              <span class="accordion-icon transition-transform duration-300 text-amber-800">▼</span>
+            </button>
+            <div id="acc-sejarah" class="accordion-content open px-5 py-4 text-sm text-stone-700 bg-white leading-relaxed border-t border-amber-200">
+              <p class="mb-2">
+                Secara etimologi dan sejarah adat, Ningkuk telah berlangsung berabad-abad di kalangan masyarakat Suku Komering yang mendiami sepanjang aliran Sungai Komering di Sumatera Selatan. Tradisi ini berawal sebagai sarana musyawarah pemuda dan wadah saling mengenal secara terhormat dan terbuka bagi muda-mudi yang akan melangkah ke jenjang pernikahan.
+              </p>
+              <p>
+                Dahulu, pergaulan bujang dan gadis diatur sangat ketat menurut norma adat dan syariat. Melalui Ningkuk, para bujang diperbolehkan datang ke rumah gadis tuan rumah dengan tata cara adat yang sopan, di bawah pengawasan para orang tua dan pemangku adat (Tetua Adat).
+              </p>
+            </div>
+          </div>
+
+          <!-- Accordion Item 2: Nilai Budaya -->
+          <div class="border-2 border-amber-300 rounded-2xl overflow-hidden bg-white shadow-sm">
+            <button class="accordion-btn w-full px-5 py-4 text-left flex justify-between items-center bg-gradient-to-r from-amber-100 to-amber-50 hover:bg-amber-200 transition-colors font-title font-bold text-amber-950 text-base sm:text-lg cursor-pointer" data-accordion-target="acc-nilai">
+              <span class="flex items-center space-x-2">
+                <span class="text-xl">💎</span>
+                <span>Nilai Luhur Budaya</span>
+              </span>
+              <span class="accordion-icon transition-transform duration-300 text-amber-800">▼</span>
+            </button>
+            <div id="acc-nilai" class="accordion-content px-5 py-4 text-sm text-stone-700 bg-white leading-relaxed border-t border-amber-200">
+              <ul class="space-y-2 list-disc list-inside">
+                <li><strong>Nilai Kesantunan & Tata Krama:</strong> Berbicara dengan bahasa yang santun, menghargai lawan bicara, dan menjaga kehormatan kaum wanita.</li>
+                <li><strong>Nilai Gotong Royong:</strong> Para pemuda-pemudi bekerja sama mempersiapkan pesta perayaan desa secara sukarela.</li>
+                <li><strong>Nilai Musyawarah:</strong> Setiap perbedaan diselesaikan dengan dialog berbalas pantun yang jenaka tanpa menyinggung perasaan.</li>
+                <li><strong>Mempererat Kekerabatan:</strong> Menghubungkan antardesa di sepanjang bantaran Sungai Komering agar terjalin persaudaraan yang rukun.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Accordion Item 3: Makna Tradisi & Prosesi -->
+          <div class="border-2 border-amber-300 rounded-2xl overflow-hidden bg-white shadow-sm">
+            <button class="accordion-btn w-full px-5 py-4 text-left flex justify-between items-center bg-gradient-to-r from-amber-100 to-amber-50 hover:bg-amber-200 transition-colors font-title font-bold text-amber-950 text-base sm:text-lg cursor-pointer" data-accordion-target="acc-makna">
+              <span class="flex items-center space-x-2">
+                <span class="text-xl">🌺</span>
+                <span>Makna Tradisi dan Prosesi Unik</span>
+              </span>
+              <span class="accordion-icon transition-transform duration-300 text-amber-800">▼</span>
+            </button>
+            <div id="acc-makna" class="accordion-content px-5 py-4 text-sm text-stone-700 bg-white leading-relaxed border-t border-amber-200">
+              <p class="mb-2">
+                Prosesi inti Ningkuk diiringi dengan tradisi <strong>Selendang Berantai</strong> dan <strong>Berbalas Pantun (Warahan)</strong>. Selendang sutra bersulam benang emas digulirkan sambil diiringi tabuhan alat musik Kulintang dan ketukan gendang.
+              </p>
+              <p>
+                Ketika alunan tabuhan berhenti, bujang atau gadis yang memegang selendang harus membacakan pantun atau menjawab teka-teki adat. Jika tidak mampu menjawab, ada "denda" adat yang menyenangkan seperti menyanyikan lagu daerah Komering atau membawakan kue dodol tradisional!
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Tombol Navigasi Bawah -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t-2 border-amber-300/80">
+          <button data-target="dashboard-section" class="btn-game-wood px-6 py-3 rounded-2xl text-sm font-bold flex items-center space-x-2 cursor-pointer w-full sm:w-auto justify-center">
+            <span>◀ Kembali ke Beranda</span>
+          </button>
+          <button data-target="materi-section" class="btn-game-green px-6 py-3 rounded-2xl text-sm font-bold flex items-center space-x-2 cursor-pointer w-full sm:w-auto justify-center">
+            <span>Selanjutnya: Materi Budaya ▶</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================
+         5. SECTION: MATERI BUDAYA KOMERING
+         ====================================================== -->
+    <section id="materi-section" class="hidden animate-fadeIn">
+      <!-- Title Plaque -->
+      <div class="text-center mb-6">
+        <div class="inline-block wood-board px-8 py-3 rounded-2xl mb-2">
+          <h2 class="font-title font-extrabold text-2xl sm:text-4xl text-amber-300 drop-shadow">
+            Materi Budaya Komering
+          </h2>
+        </div>
+        <p class="text-stone-700 font-semibold text-sm sm:text-base">
+          Klik salah satu kartu materi di bawah ini untuk membaca penjelasan lengkap beserta ilustrasinya!
+        </p>
+      </div>
+
+      <!-- 4 Kartu Materi (Card Grid) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        
+        <!-- Card 1: Pakaian Adat -->
+        <div class="btn-materi-card parchment-card p-5 cursor-pointer hover:border-amber-500 transition-all group" data-materi="pakaian">
+          <div class="flex items-center space-x-4 mb-3">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-3xl shadow-md border-2 border-amber-300 flex-shrink-0 group-hover:rotate-3 transition-transform">
+              👑
+            </div>
+            <div>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-amber-800 bg-amber-200 px-2 py-0.5 rounded-full">
+                Busana & Atribut
+              </span>
+              <h3 class="font-title font-bold text-xl text-amber-950 mt-1">
+                Pakaian Adat Komering
+              </h3>
+            </div>
+          </div>
+          <p class="text-xs sm:text-sm text-stone-700 leading-relaxed mb-4">
+            Baju Lambis beludru bertabur benang emas, Tanjak Komering kebanggaan bujang, dan mahkota pengantin wanita yang anggun mempesona.
+          </p>
+          <div class="flex items-center justify-between text-xs font-bold text-amber-900 border-t border-amber-300/70 pt-2.5">
+            <span>Klik untuk baca selengkapnya</span>
+            <span class="text-base text-amber-600">📖 ➔</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Rumah Adat -->
+        <div class="btn-materi-card parchment-card p-5 cursor-pointer hover:border-amber-500 transition-all group" data-materi="rumah">
+          <div class="flex items-center space-x-4 mb-3">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-400 to-amber-700 flex items-center justify-center text-3xl shadow-md border-2 border-amber-300 flex-shrink-0 group-hover:rotate-3 transition-transform">
+              🏠
+            </div>
+            <div>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-amber-800 bg-amber-200 px-2 py-0.5 rounded-full">
+                Arsitektur Panggung
+              </span>
+              <h3 class="font-title font-bold text-xl text-amber-950 mt-1">
+                Rumah Adat (Rumah Ulu)
+              </h3>
+            </div>
+          </div>
+          <p class="text-xs sm:text-sm text-stone-700 leading-relaxed mb-4">
+            Struktur panggung kayu unglen setinggi 3 meter tepi sungai, beranda teras musyawarah, dan ukiran tebing layar simbar emas.
+          </p>
+          <div class="flex items-center justify-between text-xs font-bold text-amber-900 border-t border-amber-300/70 pt-2.5">
+            <span>Klik untuk baca selengkapnya</span>
+            <span class="text-base text-amber-600">📖 ➔</span>
+          </div>
+        </div>
+
+        <!-- Card 3: Motif & Ornamen -->
+        <div class="btn-materi-card parchment-card p-5 cursor-pointer hover:border-amber-500 transition-all group" data-materi="motif">
+          <div class="flex items-center space-x-4 mb-3">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-rose-400 to-red-600 flex items-center justify-center text-3xl shadow-md border-2 border-amber-300 flex-shrink-0 group-hover:rotate-3 transition-transform">
+              🎨
+            </div>
+            <div>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-rose-800 bg-rose-200 px-2 py-0.5 rounded-full">
+                Seni Rupa & Tekstil
+              </span>
+              <h3 class="font-title font-bold text-xl text-amber-950 mt-1">
+                Motif & Ornamen Tradisional
+              </h3>
+            </div>
+          </div>
+          <p class="text-xs sm:text-sm text-stone-700 leading-relaxed mb-4">
+            Kain tenun Kawai Kanduk, motif geometris Pucuk Rebung yang sarat harapan, serta pola sisik ikan lambang kelimpahan rezeki.
+          </p>
+          <div class="flex items-center justify-between text-xs font-bold text-amber-900 border-t border-amber-300/70 pt-2.5">
+            <span>Klik untuk baca selengkapnya</span>
+            <span class="text-base text-amber-600">📖 ➔</span>
+          </div>
+        </div>
+
+        <!-- Card 4: Bahasa dan Kesenian -->
+        <div class="btn-materi-card parchment-card p-5 cursor-pointer hover:border-amber-500 transition-all group" data-materi="bahasa">
+          <div class="flex items-center space-x-4 mb-3">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-400 to-green-600 flex items-center justify-center text-3xl shadow-md border-2 border-amber-300 flex-shrink-0 group-hover:rotate-3 transition-transform">
+              🎶
+            </div>
+            <div>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-200 px-2 py-0.5 rounded-full">
+                Musik & Bahasa Daerah
+              </span>
+              <h3 class="font-title font-bold text-xl text-amber-950 mt-1">
+                Bahasa dan Kesenian Komering
+              </h3>
+            </div>
+          </div>
+          <p class="text-xs sm:text-sm text-stone-700 leading-relaxed mb-4">
+            Gemerincing tabuhan Kulintang gong perunggu, keluwesan Tari Tigol penghormatan, dan seni bertutur sastra lisan Warahan.
+          </p>
+          <div class="flex items-center justify-between text-xs font-bold text-amber-900 border-t border-amber-300/70 pt-2.5">
+            <span>Klik untuk baca selengkapnya</span>
+            <span class="text-base text-amber-600">📖 ➔</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Navigasi Bawah -->
+      <div class="flex justify-between items-center">
+        <button data-target="ningkuk-section" class="btn-game-wood px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold cursor-pointer">
+          ◀ Kembali ke Ningkuk
+        </button>
+        <button data-target="games-section" class="btn-game-green px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold cursor-pointer">
+          Ayo Main Game Edukasi ▶
+        </button>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         6. SECTION: GAME EDUKASI (MINI GAMES BERBASIS WEB)
+         ====================================================== -->
+    <section id="games-section" class="hidden animate-fadeIn">
+      <!-- Title Plaque -->
+      <div class="text-center mb-6">
+        <div class="inline-block wood-board px-8 py-3 rounded-2xl mb-2">
+          <h2 class="font-title font-extrabold text-2xl sm:text-4xl text-amber-300 drop-shadow">
+            Game Edukasi Budaya
+          </h2>
+        </div>
+        <p class="text-stone-700 font-semibold text-sm sm:text-base">
+          Pilih permainan yang ingin kamu mainkan langsung di browser dan kumpulkan poinmu!
+        </p>
+      </div>
+
+      <!-- 4 Pilihan Mini-Game Tab Nav -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+        <button class="game-tab-btn bg-amber-400 text-amber-950 border-2 border-amber-600 p-3 rounded-2xl font-title font-bold text-xs sm:text-sm shadow-sm cursor-pointer transition-all flex flex-col items-center justify-center space-y-1" data-game="tebak-gambar">
+          <span class="text-2xl">🖼️</span>
+          <span>Tebak Gambar</span>
+        </button>
+        <button class="game-tab-btn bg-amber-100 text-amber-800 border-2 border-amber-300 p-3 rounded-2xl font-title font-bold text-xs sm:text-sm shadow-sm cursor-pointer transition-all flex flex-col items-center justify-center space-y-1" data-game="cocokkan-kartu">
+          <span class="text-2xl">🃏</span>
+          <span>Cocokkan Kartu</span>
+        </button>
+        <button class="game-tab-btn bg-amber-100 text-amber-800 border-2 border-amber-300 p-3 rounded-2xl font-title font-bold text-xs sm:text-sm shadow-sm cursor-pointer transition-all flex flex-col items-center justify-center space-y-1" data-game="puzzle-rumah">
+          <span class="text-2xl">🧩</span>
+          <span>Puzzle Rumah Adat</span>
+        </button>
+        <button class="game-tab-btn bg-amber-100 text-amber-800 border-2 border-amber-300 p-3 rounded-2xl font-title font-bold text-xs sm:text-sm shadow-sm cursor-pointer transition-all flex flex-col items-center justify-center space-y-1" data-game="tebak-motif">
+          <span class="text-2xl">🎨</span>
+          <span>Tebak Motif</span>
+        </button>
+      </div>
+
+      <!-- Game Arena Board Container -->
+      <div class="parchment-card p-5 sm:p-8 max-w-3xl mx-auto mb-8 shadow-xl">
+        <div id="game-arena-container">
+          <!-- Game will be rendered here dynamically -->
+        </div>
+      </div>
+
+      <!-- Navigasi Bawah -->
+      <div class="flex justify-between items-center">
+        <button data-target="materi-section" class="btn-game-wood px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold cursor-pointer">
+          ◀ Kembali ke Materi
+        </button>
+        <button data-target="peta-section" class="btn-game-green px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold cursor-pointer">
+          Lanjut ke Peta Budaya ▶
+        </button>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         7. SECTION: PETA BUDAYA KOMERING
+         ====================================================== -->
+    <section id="peta-section" class="hidden animate-fadeIn">
+      <!-- Title Plaque -->
+      <div class="text-center mb-6">
+        <div class="inline-block wood-board px-8 py-3 rounded-2xl mb-2">
+          <h2 class="font-title font-extrabold text-2xl sm:text-4xl text-amber-300 drop-shadow">
+            Peta Budaya Komering
+          </h2>
+        </div>
+        <p class="text-stone-700 font-semibold text-sm sm:text-base">
+          Jelajahi titik-titik bersejarah di sepanjang aliran Sungai Komering. Klik pin merah untuk melihat detailnya!
+        </p>
+      </div>
+
+      <!-- Main Map & Info Card Side-by-Side Container -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8 items-start">
+        
+        <!-- Interactive SVG Map (Col-7) -->
+        <div class="lg:col-span-7 parchment-card p-4 sm:p-6 shadow-xl overflow-hidden">
+          <div class="flex justify-between items-center mb-3">
+            <span class="font-title font-bold text-amber-950 text-sm flex items-center space-x-1.5">
+              <span>🌊</span>
+              <span>Aliran Sungai Komering (Sumatera Selatan)</span>
+            </span>
+            <span class="text-[11px] bg-red-100 text-red-800 font-bold px-2 py-0.5 rounded-full border border-red-300 animate-pulse">
+              5 Titik Adat
+            </span>
+          </div>
+
+          <!-- SVG Map Wrapper -->
+          <div class="relative bg-gradient-to-b from-sky-200 via-emerald-100 to-sky-100 rounded-2xl border-2 border-amber-300 p-2 overflow-hidden">
+            <svg id="komering-map-svg" viewBox="0 0 500 420" class="w-full h-auto drop-shadow select-none">
+              <defs>
+                <!-- River Gradient -->
+                <linearGradient id="riverGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#0284C7"/>
+                  <stop offset="50%" stop-color="#38BDF8"/>
+                  <stop offset="100%" stop-color="#0369A1"/>
+                </linearGradient>
+              </defs>
+
+              <!-- Land Topography Shapes -->
+              <path d="M20 20 Q120 40 200 30 Q350 10 480 50 L480 400 Q300 420 180 390 Q40 410 20 400 Z" fill="#DCFCE7" stroke="#86EFAC" stroke-width="2"/>
+              <path d="M60 80 Q180 120 260 100 Q400 120 450 180 L420 360 Q280 370 140 340 Z" fill="#BBF7D0" opacity="0.6"/>
+
+              <!-- Mountain at Ranau (Hulu) -->
+              <g transform="translate(60, 310)">
+                <polygon points="40,20 10,70 70,70" fill="#65A30D" stroke="#3F6212" stroke-width="2"/>
+                <polygon points="65,30 35,75 95,75" fill="#4D7C0F" stroke="#3F6212" stroke-width="2"/>
+                <ellipse cx="50" cy="74" rx="35" ry="12" fill="#38BDF8" stroke="#0284C7" stroke-width="2"/>
+                <text x="50" y="88" font-size="9" font-weight="bold" fill="#075985" text-anchor="middle">Danau Ranau</text>
+              </g>
+
+              <!-- The Winding Komering River Course (From Ranau to Kayu Agung / Palembang) -->
+              <path d="M100 360 
+                       C120 330, 140 310, 160 280 
+                       C180 250, 220 260, 240 240 
+                       C260 220, 250 190, 290 170 
+                       C330 150, 350 150, 370 130 
+                       C390 110, 420 90, 440 60" 
+                    fill="none" 
+                    stroke="url(#riverGrad)" 
+                    stroke-width="14" 
+                    stroke-linecap="round" 
+                    stroke-linejoin="round"/>
+
+              <!-- River Flow Motion Dashes -->
+              <path d="M100 360 C120 330, 140 310, 160 280 C180 250, 220 260, 240 240 C260 220, 250 190, 290 170 C330 150, 350 150, 370 130 C390 110, 420 90, 440 60" 
+                    fill="none" 
+                    stroke="#FFFFFF" 
+                    stroke-width="2.5" 
+                    stroke-dasharray="8 10" 
+                    opacity="0.8"/>
+
+              <!-- Forest / Tree Icons -->
+              <g fill="#15803D" opacity="0.6">
+                <circle cx="200" cy="190" r="8"/>
+                <circle cx="212" cy="188" r="6"/>
+                <circle cx="310" cy="270" r="9"/>
+                <circle cx="324" cy="268" r="7"/>
+                <circle cx="130" cy="230" r="8"/>
+                <circle cx="340" cy="100" r="7"/>
+              </g>
+
+              <!-- Compass Rose -->
+              <g transform="translate(440, 370)">
+                <circle cx="0" cy="0" r="18" fill="#FFFDF5" stroke="#B45309" stroke-width="2"/>
+                <polygon points="0,-14 4,-2 -4,-2" fill="#DC2626"/>
+                <polygon points="0,14 4,2 -4,2" fill="#78350F"/>
+                <text x="0" y="-15" font-size="8" font-weight="extrabold" fill="#DC2626" text-anchor="middle">U</text>
+              </g>
+
+              <!-- Interactive Location Pins Group -->
+              <g id="map-pins-group">
+                <!-- Rendered dynamically in js/app.js -->
+              </g>
+            </svg>
+          </div>
+          <p class="text-[11px] text-stone-500 mt-2 text-center italic">
+            Klik salah satu pin merah untuk melihat informasi kawasan budaya Komering
+          </p>
+        </div>
+
+        <!-- Info Card di Sebelah Peta (Col-5) -->
+        <div class="lg:col-span-5 parchment-card p-6 shadow-xl">
+          <div class="flex items-center space-x-3 mb-4">
+            <div id="map-card-icon" class="w-14 h-14 bg-amber-200 border-2 border-amber-400 rounded-2xl flex items-center justify-center text-3xl shadow flex-shrink-0">
+              🏛️
+            </div>
+            <div>
+              <span id="map-card-badge" class="bg-amber-300 text-amber-950 text-xs font-black px-2.5 py-0.5 rounded-full uppercase">
+                Rumah Adat Kuno
+              </span>
+              <h3 id="map-card-title" class="font-title font-extrabold text-xl text-amber-950 mt-1">
+                Desa Cempaka & Betung
+              </h3>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <div class="bg-white/80 p-4 rounded-xl border border-amber-300 text-sm text-stone-700 leading-relaxed shadow-inner">
+              <p id="map-card-desc">
+                Salah satu kawasan permukiman Suku Komering tertua di tepi sungai yang masih merawat deretan Rumah Ulu kayu berusia lebih dari satu abad.
+              </p>
+            </div>
+
+            <div class="bg-amber-100 p-3.5 rounded-xl border-2 border-amber-400">
+              <span class="text-xs font-bold text-amber-900 block mb-1">✨ Keistimewaan Budaya:</span>
+              <p id="map-card-fact" class="text-xs text-amber-950 font-medium">
+                Kawasan konservasi arsitektur tradisional panggung kayu tanpa paku besi.
+              </p>
+            </div>
+
+            <div class="pt-2">
+              <button data-target="materi-section" class="btn-game-gold w-full py-2.5 rounded-xl text-xs font-bold cursor-pointer">
+                Pelajari Materi Terkait 📖
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Navigasi Bawah -->
+      <div class="flex justify-between items-center">
+        <button data-target="games-section" class="btn-game-wood px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold cursor-pointer">
+          ◀ Kembali ke Game
+        </button>
+        <button data-target="kuis-section" class="btn-game-green px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold cursor-pointer">
+          Ayo Mulai Kuis Evaluasi ▶
+        </button>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         8. SECTION: KUIS & HASIL BELAJAR
+         ====================================================== -->
+    <section id="kuis-section" class="hidden animate-fadeIn">
+      <!-- Title Plaque -->
+      <div class="text-center mb-6">
+        <div class="inline-block wood-board px-8 py-3 rounded-2xl mb-2">
+          <h2 class="font-title font-extrabold text-2xl sm:text-4xl text-amber-300 drop-shadow">
+            Kuis Budaya Komering
+          </h2>
+        </div>
+        <p class="text-stone-700 font-semibold text-sm sm:text-base">
+          Uji wawasanmu seputar tradisi Ningkuk dan budaya Komering!
+        </p>
+      </div>
+
+      <!-- 8.1 VIEW KUIS AKTIF -->
+      <div id="quiz-active-view" class="parchment-card p-5 sm:p-8 max-w-3xl mx-auto shadow-2xl">
+        
+        <!-- Header Progres Soal -->
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center space-x-2">
+            <span class="w-8 h-8 rounded-full bg-amber-400 text-amber-950 font-black flex items-center justify-center text-xs shadow">
+              🎯
+            </span>
+            <span class="font-bold text-amber-950 text-sm sm:text-base">Progres Kuis:</span>
+          </div>
+          <span id="quiz-progress-text" class="font-black text-amber-800 text-sm sm:text-base">
+            1/10
+          </span>
+        </div>
+
+        <!-- Progress Bar Line -->
+        <div class="w-full bg-amber-200/80 rounded-full h-3.5 mb-6 overflow-hidden border border-amber-300">
+          <div id="quiz-progress-bar" class="bg-gradient-to-r from-amber-400 via-amber-500 to-green-500 h-full rounded-full transition-all duration-300" style="width: 10%;"></div>
+        </div>
+
+        <!-- Question Box -->
+        <div class="bg-amber-100/70 p-4 sm:p-5 rounded-2xl border-2 border-amber-300 mb-6 shadow-inner">
+          <h3 id="quiz-question-text" class="font-title font-bold text-base sm:text-lg text-amber-950 leading-relaxed">
+            <!-- Question text rendered in js/app.js -->
+          </h3>
+        </div>
+
+        <!-- 4 Multiple Choice Options (A, B, C, D) -->
+        <div id="quiz-options-container" class="space-y-3 mb-6">
+          <!-- Rendered in js/app.js -->
+        </div>
+
+        <!-- Explanation box when answered -->
+        <div id="quiz-explanation-box" class="hidden"></div>
+
+        <!-- Action Submit / Next Button -->
+        <div class="pt-4 border-t-2 border-amber-300/70 flex justify-end">
+          <button id="btn-submit-answer" class="btn-game-gold px-8 py-3 rounded-2xl text-base font-bold shadow-md cursor-pointer disabled:opacity-50">
+            Jawab Sekarang
+          </button>
+        </div>
+      </div>
+
+      <!-- 8.2 VIEW HASIL BELAJAR (Muncul Setelah Kuis Selesai) -->
+      <div id="quiz-result-view" class="hidden parchment-card p-6 sm:p-10 max-w-xl mx-auto shadow-2xl text-center relative overflow-hidden">
+        <!-- Confetti Particle Container -->
+        <div id="confetti-container" class="absolute inset-0 pointer-events-none overflow-hidden"></div>
+
+        <!-- Banner Ucapan Hebat -->
+        <div class="inline-block wood-board px-8 py-2.5 rounded-2xl mb-4">
+          <h3 id="result-banner-title" class="font-title font-extrabold text-2xl sm:text-3xl text-amber-300 drop-shadow">
+            Hebat! Luar Biasa!
+          </h3>
+        </div>
+
+        <!-- Stars Slot -->
+        <div id="result-stars-slot" class="mb-4">
+          <!-- 3 Stars -->
+        </div>
+
+        <!-- Mascot Celebrating -->
+        <div class="w-36 h-36 mx-auto mb-4" id="result-mascot-slot">
+          <!-- Mascot Cheering SVG -->
+        </div>
+
+        <!-- Score Badge Box -->
+        <div class="bg-gradient-to-b from-amber-100 to-amber-200 border-3 border-amber-400 rounded-3xl p-6 mb-6 shadow-inner max-w-xs mx-auto">
+          <span class="text-xs uppercase font-extrabold tracking-widest text-amber-800 block mb-1">
+            Skor Akhir
+          </span>
+          <div id="result-score-number" class="font-title font-black text-5xl sm:text-6xl text-amber-600 drop-shadow">
+            100
+          </div>
+          <div class="mt-2 text-xs font-bold text-stone-700 bg-white/70 py-1 px-3 rounded-full inline-block border border-amber-300">
+            Jawaban Benar: <strong id="result-correct-count" class="text-amber-900">10 / 10</strong>
+          </div>
+        </div>
+
+        <p class="text-xs sm:text-sm text-stone-700 mb-6 font-medium">
+          Kamu telah membuktikan kepedulian dan wawasan tinggi dalam melestarikan budaya Ningkuk Suku Komering!
+        </p>
+
+        <!-- Dua Tombol Aksi: Ulangi Kuis (Oranye) & Kembali ke Beranda (Hijau) -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button id="btn-restart-quiz" class="btn-game-orange px-6 py-3 rounded-2xl font-title font-bold text-base cursor-pointer w-full sm:w-auto">
+            Ulangi Kuis 🔄
+          </button>
+          <button id="btn-quiz-back-home" class="btn-game-green px-6 py-3 rounded-2xl font-title font-bold text-base cursor-pointer w-full sm:w-auto">
+            Kembali ke Beranda 🏠
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================
+       MODAL 1: MODAL PENGATURAN (Settings Modal)
+       ======================================================== -->
+  <div id="settings-modal" class="hidden fixed inset-0 z-50 modal-backdrop flex items-center justify-center p-4">
+    <div class="parchment-card max-w-md w-full p-6 sm:p-8 shadow-2xl relative border-4 border-amber-500">
+      
+      <!-- Modal Header Wood Plaque -->
+      <div class="wood-board p-3 rounded-xl text-center mb-6">
+        <h3 class="font-title font-extrabold text-xl sm:text-2xl text-amber-300">
+          ⚙️ Pengaturan Aplikasi
+        </h3>
+      </div>
+
+      <!-- Settings Controls -->
+      <div class="space-y-5 mb-6 text-stone-800 text-sm">
+        
+        <!-- Toggle Switch Suara (On/Off) -->
+        <div class="flex items-center justify-between bg-white p-3.5 rounded-xl border-2 border-amber-300 shadow-sm">
+          <div class="flex items-center space-x-3">
+            <span class="text-2xl">🔊</span>
+            <span class="font-bold text-amber-950">Suara & Musik Master</span>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="setting-sound-switch" checked class="sr-only peer">
+            <div class="w-11 h-6 bg-stone-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:width-5 after:transition-all peer-checked:bg-emerald-500"></div>
+          </label>
+        </div>
+
+        <!-- Slider Volume Musik -->
+        <div class="bg-white p-3.5 rounded-xl border-2 border-amber-300 shadow-sm">
+          <div class="flex justify-between items-center mb-2">
+            <span class="font-bold text-amber-950 flex items-center space-x-2">
+              <span>🎵</span>
+              <span>Volume Musik Tradisional</span>
+            </span>
+          </div>
+          <input type="range" id="setting-music-slider" min="0" max="1" step="0.05" value="0.4" class="w-full accent-amber-500 cursor-pointer">
+        </div>
+
+        <!-- Slider Volume Efek Suara (SFX) -->
+        <div class="bg-white p-3.5 rounded-xl border-2 border-amber-300 shadow-sm">
+          <div class="flex justify-between items-center mb-2">
+            <span class="font-bold text-amber-950 flex items-center space-x-2">
+              <span>🔔</span>
+              <span>Volume Efek Suara (SFX)</span>
+            </span>
+          </div>
+          <input type="range" id="setting-sfx-slider" min="0" max="1" step="0.05" value="0.8" class="w-full accent-amber-500 cursor-pointer">
+        </div>
+
+        <!-- Informasi Aplikasi & Tentang Kami -->
+        <div class="bg-amber-100/80 p-3.5 rounded-xl border border-amber-300 text-xs text-amber-950 space-y-1">
+          <p class="font-bold">ℹ️ Tentang LINDUNING WEB:</p>
+          <p>Aplikasi edukasi interaktif pelestarian budaya tradisi Ningkuk Suku Komering (Sumatera Selatan). Dirancang khusus untuk pelajar dan generasi muda.</p>
+        </div>
+
+      </div>
+
+      <!-- Tombol Tutup / Kembali -->
+      <button id="btn-close-settings" class="btn-game-wood w-full py-3 rounded-xl font-title font-bold text-base cursor-pointer">
+        Simpan & Kembali ◀
+      </button>
+
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL 2: MATERI DETAIL MODAL
+       ======================================================== -->
+  <div id="materi-modal" class="hidden fixed inset-0 z-50 modal-backdrop flex items-center justify-center p-4">
+    <div class="parchment-card max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative border-4 border-amber-500 max-h-[90vh] overflow-y-auto">
+      
+      <!-- Modal Header -->
+      <div class="flex justify-between items-start mb-4 pb-3 border-b-2 border-amber-300">
+        <div>
+          <span id="materi-modal-badge" class="text-white text-xs font-bold px-3 py-1 rounded-full uppercase shadow">
+            Kategori
+          </span>
+          <h3 id="materi-modal-title" class="font-title font-extrabold text-2xl sm:text-3xl text-amber-950 mt-1">
+            Judul Materi
+          </h3>
+          <p id="materi-modal-tagline" class="text-xs sm:text-sm text-stone-600 font-semibold italic">
+            Tagline
+          </p>
+        </div>
+        <button id="btn-close-materi-modal" class="w-9 h-9 bg-stone-200 hover:bg-stone-300 text-stone-700 rounded-full font-black flex items-center justify-center cursor-pointer text-base">
+          ✕
+        </button>
+      </div>
+
+      <!-- Modal Body Content -->
+      <div id="materi-modal-body" class="text-stone-800 text-sm sm:text-base leading-relaxed mb-6">
+        <!-- Injected from MATERI_DATA -->
+      </div>
+
+      <!-- Footer Action -->
+      <div class="text-right">
+        <button onclick="document.getElementById('materi-modal').classList.add('hidden')" class="btn-game-gold px-6 py-2.5 rounded-xl font-bold text-sm cursor-pointer">
+          Tutup Materi ✓
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================
+       FOOTER
+       ======================================================== -->
+  <footer class="bg-gradient-to-b from-[#60290A] to-[#3B1705] border-t-4 border-amber-500 text-amber-100 py-8 px-4 mt-12">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+      <div>
+        <div class="flex items-center justify-center md:justify-start space-x-2">
+          <span class="font-title font-bold text-xl text-amber-300">LINDUNING WEB</span>
+          <span class="text-xs text-amber-200 bg-amber-900 px-2 py-0.5 rounded border border-amber-700">Versi 1.0</span>
+        </div>
+        <p class="text-xs text-amber-300/80 mt-1">
+          "Lestarikan Ningkuk, Jaga Identitas" — Warisan Luhur Suku Komering, Sumatera Selatan.
+        </p>
+      </div>
+      <div class="text-xs text-amber-300/70">
+        Dibuat untuk Media Edukasi Interaktif Generasi Muda Nusantara © 2026
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/illustrations.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
