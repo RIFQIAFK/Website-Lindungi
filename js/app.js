@@ -3,7 +3,7 @@
  * Handles SPA navigation, culture modals, interactive mini-games, dynamic map, and quiz system
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+function initApp() {
   // Initialize illustrations in containers
   renderInitialIllustrations();
 
@@ -34,7 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
       if (window.soundEngine) window.soundEngine.playClick();
     });
   });
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
+}
 
 /* ============================================================
    1. Initial Illustration Render
@@ -44,28 +50,22 @@ function renderInitialIllustrations() {
   if (crownSlot) crownSlot.innerHTML = window.CulturalAssets.getTanjakGold();
 
   const heroMascot = document.getElementById('hero-mascot-slot');
-  if (heroMascot) heroMascot.innerHTML = window.CulturalAssets.getMascot('waving');
-
-  const heroMascotMobile = document.getElementById('hero-mascot-mobile-slot');
-  if (heroMascotMobile) heroMascotMobile.innerHTML = window.CulturalAssets.getMascot('waving');
+  if (heroMascot) heroMascot.innerHTML = window.CulturalAssets.getMascot('waving', 'hm_');
 
   const dashMascot = document.getElementById('dash-mascot-icon');
-  if (dashMascot) dashMascot.innerHTML = window.CulturalAssets.getMascot('waving');
+  if (dashMascot) dashMascot.innerHTML = window.CulturalAssets.getMascot('waving', 'dm_');
 
   const heroHouse = document.getElementById('hero-house-slot');
   if (heroHouse) heroHouse.innerHTML = window.CulturalAssets.getRumahAdat();
-
-  const heroHouseMobile = document.getElementById('hero-house-mobile-slot');
-  if (heroHouseMobile) heroHouseMobile.innerHTML = window.CulturalAssets.getRumahAdat();
 
   const ningkukSceneSlot = document.getElementById('ningkuk-scene-slot');
   if (ningkukSceneSlot) ningkukSceneSlot.innerHTML = window.CulturalAssets.getNingkukScene();
 
   const quizMascotSlot = document.getElementById('quiz-mascot-slot');
-  if (quizMascotSlot) quizMascotSlot.innerHTML = window.CulturalAssets.getMascot('waving');
+  if (quizMascotSlot) quizMascotSlot.innerHTML = window.CulturalAssets.getMascot('waving', 'qm_');
 
   const resultMascotSlot = document.getElementById('result-mascot-slot');
-  if (resultMascotSlot) resultMascotSlot.innerHTML = window.CulturalAssets.getMascot('cheering');
+  if (resultMascotSlot) resultMascotSlot.innerHTML = window.CulturalAssets.getMascot('cheering', 'rm_');
 }
 
 /* ============================================================

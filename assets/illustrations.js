@@ -33,31 +33,33 @@ const CulturalAssets = {
   `,
 
   // Mascot Boy in Komering traditional attire (Baju Lambis, Tanjak, Songket)
-  getMascot: (pose = 'waving') => `
+  getMascot: (pose = 'waving', prefix) => {
+    const p = prefix || ('m_' + Math.floor(Math.random() * 10000) + '_');
+    return `
     <svg viewBox="0 0 220 280" class="w-full h-full drop-shadow-xl" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <linearGradient id="skin" x1="0%" y1="0%" x2="0%" y2="100%">
+        <linearGradient id="${p}skin" x1="0%" y1="0%" x2="0%" y2="100%">
           <stop offset="0%" stop-color="#FFE4C4"/>
           <stop offset="100%" stop-color="#FED7AA"/>
         </linearGradient>
-        <linearGradient id="hair" x1="0%" y1="0%" x2="0%" y2="100%">
+        <linearGradient id="${p}hair" x1="0%" y1="0%" x2="0%" y2="100%">
           <stop offset="0%" stop-color="#262626"/>
           <stop offset="100%" stop-color="#171717"/>
         </linearGradient>
-        <linearGradient id="songketRed" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id="${p}songketRed" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stop-color="#991B1B"/>
           <stop offset="50%" stop-color="#DC2626"/>
           <stop offset="100%" stop-color="#7F1D1D"/>
         </linearGradient>
-        <linearGradient id="tanjakCloth" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id="${p}tanjakCloth" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stop-color="#B91C1C"/>
           <stop offset="70%" stop-color="#7F1D1D"/>
         </linearGradient>
       </defs>
 
       <!-- Traditional Tanjak Headgear -->
-      <g id="headgear">
-        <path d="M60 70 C55 35 75 10 110 8 C145 10 165 35 160 70 Z" fill="url(#tanjakCloth)" stroke="#78350F" stroke-width="2.5"/>
+      <g id="${p}headgear">
+        <path d="M60 70 C55 35 75 10 110 8 C145 10 165 35 160 70 Z" fill="url(#${p}tanjakCloth)" stroke="#78350F" stroke-width="2.5"/>
         <!-- Golden Tanjak Crest Peaks -->
         <path d="M110 6 L124 35 L145 20 L135 50 L158 45 L145 70 L75 70 L62 45 L85 50 L75 20 L96 35 Z" fill="#FACC15" stroke="#78350F" stroke-width="2"/>
         <path d="M90 40 Q110 30 130 40" stroke="#B45309" stroke-width="2" fill="none"/>
@@ -68,7 +70,7 @@ const CulturalAssets = {
       </g>
 
       <!-- Head & Face -->
-      <path d="M72 75 C72 60 148 60 148 75 C152 110 148 135 110 135 C72 135 68 110 72 75 Z" fill="url(#skin)" stroke="#78350F" stroke-width="2.5"/>
+      <path d="M72 75 C72 60 148 60 148 75 C152 110 148 135 110 135 C72 135 68 110 72 75 Z" fill="url(#${p}skin)" stroke="#78350F" stroke-width="2.5"/>
       <!-- Hair sideburns -->
       <path d="M68 75 Q72 95 78 88" stroke="#171717" stroke-width="4" stroke-linecap="round"/>
       <path d="M152 75 Q148 95 142 88" stroke="#171717" stroke-width="4" stroke-linecap="round"/>
@@ -90,7 +92,7 @@ const CulturalAssets = {
       <path d="M102 118 Q110 126 118 118" fill="#EF4444"/>
 
       <!-- Body / Baju Adat Lambis Komering (Black velvet with gold borders & embroidery) -->
-      <g id="body-attire">
+      <g id="${p}body-attire">
         <path d="M72 135 L50 195 L80 200 L85 240 L135 240 L140 200 L170 195 L148 135 Z" fill="#18181B" stroke="#78350F" stroke-width="2.5"/>
         <!-- Gold center collar & buttons -->
         <path d="M105 135 L105 190 L115 190 L115 135 Z" fill="#FACC15" stroke="#78350F" stroke-width="1.5"/>
@@ -102,10 +104,10 @@ const CulturalAssets = {
         <path d="M85 145 Q110 160 135 145" stroke="#FDE047" stroke-width="2.5" fill="none"/>
         <path d="M88 155 Q110 170 132 155" stroke="#FACC15" stroke-width="2" stroke-dasharray="2,2" fill="none"/>
         <!-- Sampang / Selempang Songket Merah Emas -->
-        <path d="M78 136 L138 200 L122 205 L68 144 Z" fill="url(#songketRed)" opacity="0.95" stroke="#78350F" stroke-width="1.5"/>
+        <path d="M78 136 L138 200 L122 205 L68 144 Z" fill="url(#${p}songketRed)" opacity="0.95" stroke="#78350F" stroke-width="1.5"/>
         <path d="M74 140 L132 198" stroke="#FDE047" stroke-width="2" stroke-dasharray="3,2"/>
         <!-- Kain Songket Pinggang -->
-        <rect x="78" y="190" width="64" height="25" rx="3" fill="url(#songketRed)" stroke="#78350F" stroke-width="2"/>
+        <rect x="78" y="190" width="64" height="25" rx="3" fill="url(#${p}songketRed)" stroke="#78350F" stroke-width="2"/>
         <path d="M80 195 L140 195 M80 205 L140 205" stroke="#FDE047" stroke-width="2" stroke-dasharray="4,2"/>
         <!-- Celana Pantalon Hitam -->
         <rect x="85" y="215" width="22" height="45" rx="4" fill="#18181B" stroke="#78350F" stroke-width="2"/>
@@ -121,27 +123,28 @@ const CulturalAssets = {
       ${pose === 'waving' ? `
         <!-- Left arm resting / friendly -->
         <path d="M72 140 Q45 160 55 185" stroke="#18181B" stroke-width="14" stroke-linecap="round"/>
-        <circle cx="56" cy="190" r="9" fill="url(#skin)" stroke="#78350F" stroke-width="2"/>
+        <circle cx="56" cy="190" r="9" fill="url(#${p}skin)" stroke="#78350F" stroke-width="2"/>
         <!-- Right arm waving high! -->
         <g class="origin-[145px_140px] animate-[waveHand_2.5s_infinite_ease-in-out]">
           <path d="M148 140 Q175 125 185 95" stroke="#18181B" stroke-width="14" stroke-linecap="round"/>
           <line x1="175" y1="105" x2="183" y2="97" stroke="#FACC15" stroke-width="3"/>
-          <ellipse cx="188" cy="88" rx="10" ry="11" fill="url(#skin)" stroke="#78350F" stroke-width="2"/>
+          <ellipse cx="188" cy="88" rx="10" ry="11" fill="url(#${p}skin)" stroke="#78350F" stroke-width="2"/>
           <!-- Fingers -->
-          <circle cx="183" cy="80" r="3.5" fill="url(#skin)"/>
-          <circle cx="189" cy="78" r="3.5" fill="url(#skin)"/>
-          <circle cx="195" cy="81" r="3.5" fill="url(#skin)"/>
-          <circle cx="198" cy="87" r="3" fill="url(#skin)"/>
+          <circle cx="183" cy="80" r="3.5" fill="url(#${p}skin)"/>
+          <circle cx="189" cy="78" r="3.5" fill="url(#${p}skin)"/>
+          <circle cx="195" cy="81" r="3.5" fill="url(#${p}skin)"/>
+          <circle cx="198" cy="87" r="3" fill="url(#${p}skin)"/>
         </g>
       ` : `
         <!-- Both hands celebratory up! -->
         <path d="M72 140 Q35 115 45 85" stroke="#18181B" stroke-width="14" stroke-linecap="round"/>
-        <circle cx="45" cy="80" r="10" fill="url(#skin)" stroke="#78350F" stroke-width="2"/>
+        <circle cx="45" cy="80" r="10" fill="url(#${p}skin)" stroke="#78350F" stroke-width="2"/>
         <path d="M148 140 Q185 115 175 85" stroke="#18181B" stroke-width="14" stroke-linecap="round"/>
-        <circle cx="175" cy="80" r="10" fill="url(#skin)" stroke="#78350F" stroke-width="2"/>
+        <circle cx="175" cy="80" r="10" fill="url(#${p}skin)" stroke="#78350F" stroke-width="2"/>
       `}
     </svg>
-  `,
+  `;
+  },
 
   // Rumah Adat Panggung Komering (Rumah Ulu Komering)
   getRumahAdat: () => `

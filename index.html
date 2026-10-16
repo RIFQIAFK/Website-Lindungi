@@ -149,41 +149,41 @@
          ====================================================== -->
     <section id="hero-section" class="block animate-fadeIn">
       <!-- Main Hero Banner Card -->
-      <div class="wood-board p-4 sm:p-8 md:p-10 mb-6 sm:mb-8 overflow-hidden">
+      <div class="wood-board p-4 sm:p-8 md:p-10 mb-6 sm:mb-8">
+        
+        <!-- Header Judul Mobile (Tampil di atas Maskot di HP) -->
+        <div class="lg:hidden text-center mb-3">
+          <div class="inline-flex items-center space-x-1.5 bg-amber-400 text-amber-950 font-title font-black px-3 py-0.5 rounded-full text-[10px] sm:text-xs uppercase tracking-wide mb-1.5 shadow-md border-2 border-amber-200">
+            <span>🌟 Media Edukasi Budaya Komering</span>
+          </div>
+          <h1 class="font-title font-extrabold text-2xl sm:text-3xl text-amber-300 drop-shadow-[0_3px_3px_rgba(0,0,0,0.8)] leading-tight mb-1">
+            LINDUNING WEB
+          </h1>
+          <p class="font-title text-sm sm:text-base text-amber-100 font-bold drop-shadow">
+            "Lestarikan Ningkuk, Jaga Identitas"
+          </p>
+        </div>
+
         <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
           
-          <!-- Teks & Sambutan Kiri -->
-          <div class="lg:col-span-7 text-center lg:text-left flex flex-col items-center lg:items-start">
-            <!-- Badge Sambutan -->
-            <div class="inline-flex items-center space-x-1.5 bg-amber-400 text-amber-950 font-title font-black px-3.5 py-1 rounded-full text-[11px] sm:text-xs uppercase tracking-wide mb-3 shadow-md border-2 border-amber-200">
-              <span>🌟 Media Edukasi Budaya Komering</span>
-            </div>
-
-            <h1 class="font-title font-extrabold text-2xl sm:text-4xl lg:text-5xl text-amber-300 drop-shadow-[0_3px_3px_rgba(0,0,0,0.8)] leading-tight mb-2">
-              LINDUNING WEB
-            </h1>
-
-            <p class="font-title text-base sm:text-xl lg:text-2xl text-amber-100 font-bold mb-3 drop-shadow">
-              "Lestarikan Ningkuk, Jaga Identitas"
-            </p>
-
-            <!-- TAMPILAN ILUSTRASI KHUSUS MOBILE: Muncul tepat di bawah judul agar hidup & ceria seperti Storyboard -->
-            <div class="lg:hidden w-full max-w-xs my-2">
-              <div class="relative bg-gradient-to-b from-sky-300 via-sky-200 to-amber-100 rounded-2xl p-2.5 border-3 border-amber-300 shadow-xl overflow-hidden">
-                <div class="h-32 w-full" id="hero-house-mobile-slot">
-                  <!-- SVG Rumah Adat -->
-                </div>
-                <div class="w-32 h-40 mx-auto -mt-16 relative z-10 animate-float" id="hero-mascot-mobile-slot">
-                  <!-- SVG Maskot Komering -->
-                </div>
-                <div class="text-center mt-0.5 bg-amber-900/85 text-amber-200 font-bold text-[10px] py-1 px-2.5 rounded-full border border-amber-400">
-                  Pemandu Cilik Suku Komering
-                </div>
+          <!-- Teks & Sambutan (Desktop: Kiri; Mobile: Bawah Maskot) -->
+          <div class="lg:col-span-7 text-center lg:text-left flex flex-col items-center lg:items-start order-2 lg:order-1">
+            
+            <!-- Header Judul Desktop (Tersembunyi di Mobile karena sudah ada di atas) -->
+            <div class="hidden lg:block">
+              <div class="inline-flex items-center space-x-1.5 bg-amber-400 text-amber-950 font-title font-black px-3.5 py-1 rounded-full text-xs uppercase tracking-wide mb-3 shadow-md border-2 border-amber-200">
+                <span>🌟 Media Edukasi Budaya Komering</span>
               </div>
+              <h1 class="font-title font-extrabold text-4xl lg:text-5xl text-amber-300 drop-shadow-[0_3px_3px_rgba(0,0,0,0.8)] leading-tight mb-2">
+                LINDUNING WEB
+              </h1>
+              <p class="font-title text-xl lg:text-2xl text-amber-100 font-bold mb-3 drop-shadow">
+                "Lestarikan Ningkuk, Jaga Identitas"
+              </p>
             </div>
 
             <!-- Sapaan Interaktif Maskot Bubble -->
-            <div class="bg-[#FFFDF5] border-2 sm:border-3 border-amber-400 p-3 sm:p-4 rounded-2xl shadow-lg my-3 relative text-amber-950 inline-block text-left w-full max-w-md">
+            <div class="bg-[#FFFDF5] border-2 sm:border-3 border-amber-400 p-3 sm:p-4 rounded-2xl shadow-lg my-2 relative text-amber-950 inline-block text-left w-full max-w-md">
               <div class="flex items-center space-x-3">
                 <span class="text-2xl sm:text-3xl flex-shrink-0 animate-bounce">👋</span>
                 <div>
@@ -212,20 +212,20 @@
             </div>
           </div>
 
-          <!-- Ilustrasi Pemandangan Sungai & Rumah Adat & Karakter (KHUSUS DESKTOP SCREEN >= lg) -->
-          <div class="hidden lg:flex lg:col-span-5 flex-col items-center justify-center relative">
-            <div class="w-full max-w-md relative bg-gradient-to-b from-sky-300 via-sky-200 to-amber-100 rounded-3xl p-4 border-4 border-amber-300 shadow-2xl overflow-hidden">
+          <!-- SATU-SATUNYA KARTU PEMANDU CILIK & RUMAH ADAT (Order 1 di Mobile, Order 2 di Desktop) -->
+          <div class="lg:col-span-5 flex flex-col items-center justify-center relative w-full order-1 lg:order-2 my-1 lg:my-0">
+            <div class="w-full max-w-[280px] sm:max-w-md relative bg-gradient-to-b from-sky-300 via-sky-200 to-amber-100 rounded-3xl p-3 sm:p-4 border-4 border-amber-300 shadow-2xl">
               <!-- Scenery: River & Rumah Adat -->
-              <div class="h-48 sm:h-56 w-full" id="hero-house-slot">
+              <div class="h-32 sm:h-56 w-full" id="hero-house-slot">
                 <!-- SVG Rumah Adat Komering -->
               </div>
 
               <!-- Animated Floating Mascot Boy in front -->
-              <div class="w-40 sm:w-48 h-52 sm:h-60 mx-auto -mt-20 relative z-10 animate-float" id="hero-mascot-slot">
+              <div class="w-32 sm:w-48 h-44 sm:h-60 mx-auto -mt-16 sm:-mt-20 relative z-10 animate-float" id="hero-mascot-slot">
                 <!-- SVG Mascot Komering -->
               </div>
               
-              <div class="text-center mt-1 bg-amber-900/80 text-amber-200 font-bold text-xs py-1.5 px-3 rounded-full border border-amber-400">
+              <div class="text-center mt-1 bg-amber-900/85 text-amber-200 font-bold text-xs py-1.5 px-3 rounded-full border border-amber-400 shadow">
                 Pemandu Cilik Suku Komering
               </div>
             </div>
