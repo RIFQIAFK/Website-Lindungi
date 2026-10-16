@@ -46,11 +46,17 @@ function renderInitialIllustrations() {
   const heroMascot = document.getElementById('hero-mascot-slot');
   if (heroMascot) heroMascot.innerHTML = window.CulturalAssets.getMascot('waving');
 
+  const heroMascotMobile = document.getElementById('hero-mascot-mobile-slot');
+  if (heroMascotMobile) heroMascotMobile.innerHTML = window.CulturalAssets.getMascot('waving');
+
   const dashMascot = document.getElementById('dash-mascot-icon');
   if (dashMascot) dashMascot.innerHTML = window.CulturalAssets.getMascot('waving');
 
   const heroHouse = document.getElementById('hero-house-slot');
   if (heroHouse) heroHouse.innerHTML = window.CulturalAssets.getRumahAdat();
+
+  const heroHouseMobile = document.getElementById('hero-house-mobile-slot');
+  if (heroHouseMobile) heroHouseMobile.innerHTML = window.CulturalAssets.getRumahAdat();
 
   const ningkukSceneSlot = document.getElementById('ningkuk-scene-slot');
   if (ningkukSceneSlot) ningkukSceneSlot.innerHTML = window.CulturalAssets.getNingkukScene();
